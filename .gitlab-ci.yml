@@ -1,0 +1,19 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
+
+build:
+  stage: build
+  script: 
+    - docker build -t registry.jakepeterson.dev/jpeterson/mern-starter-auth/mern-starter-auth:latest .
+    - docker push registry.jakepeterson.dev/jpeterson/mern-starter-auth/mern-starter-auth:latest
+
+deploy:
+  stage: deploy
+  script:
+    - microk8s kubectl apply -f mern-starter-auth-depl.yaml
+    - microk8s kubectl rollout restart deployment mern-starter-auth-depl
