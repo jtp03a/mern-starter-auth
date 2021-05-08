@@ -3,7 +3,7 @@
 FROM node:14-alpine as client
 # Working directory be app
 WORKDIR /usr/app/frontend/
-COPY client/package*.json ./
+COPY frontend/package*.json ./
 # Install dependencies
 RUN npm install
 # copy local files to app folder
