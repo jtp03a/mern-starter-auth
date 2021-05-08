@@ -76,8 +76,8 @@ function Signup() {
                     onChange={handleInputChange}
                     className="form-control"
                     required
-                    pattern="[a-z,0-9]{5,15}"
-                    title="Username should only contain lowercase letters or numbers and be between 5 and 15 characters"
+                    pattern="[a-z,0-9]{5,25}"
+                    title="Username should only contain lowercase letters or numbers and be between 5 and 25 characters"
                   />
                 </div>
                 <div className="input group form-group">

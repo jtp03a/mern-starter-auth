@@ -3,12 +3,13 @@ const router = express.Router();
 const User = require('../models/user.model');
 const jwtDecode = require('jwt-decode');
 const { createToken, hashPassword, verifyPassword } = require('./../utilities');
+const validator = require('./../validator')
 
 router.get('/', (req, res) => {
   res.send('You have hit the app api')
 })
 
-router.post('/auth/login', async (req, res) => {
+router.post('/auth/login', validator.loginValidationRules(), validator.validate, async (req, res) => {
   console.log(req.body)
   try {
     const { username, password } = req.body;
@@ -68,7 +69,7 @@ router.post('/auth/login', async (req, res) => {
   }
 });
 
-router.post('/auth/changepassword', async (req, res) => {
+router.post('/auth/changepassword', validator.changePassValidationRules(), validator.validate, async (req, res) => {
   try {
     const { username, password, newpass } = req.body;
     const user = await User.findOne({
@@ -106,7 +107,7 @@ router.post('/auth/changepassword', async (req, res) => {
 })
 
 
-router.post('/auth/signup', async (req, res) => {
+router.post('/auth/signup', validator.signupValidationRules(), validator.validate, async (req, res) => {
   console.log(req.body)
   try {
     const { firstname, lastname, email, username } = req.body

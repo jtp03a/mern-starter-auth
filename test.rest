@@ -1,0 +1,18 @@
+POST http://localhost:4000/api/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "a3sir86@gmail.com",
+    "password": "1234"
+}
+###
+GET http://localhost:4000/api/ HTTP/1.1
+###
+GET https://mern-auth.jakepeterson.dev/api/private HTTP/1.1
+###
+POST http://localhost:6000/posts/create HTTP/1.1
+content-type: application/json
+
+{
+    "title": "My First Post"
+}
