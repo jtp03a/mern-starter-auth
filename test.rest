@@ -2,8 +2,8 @@ POST http://localhost:4000/api/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "a3sir86@gmail.com",
-    "password": "1234"
+    "username": "jtp03a",
+    "password": "J@k3L1ghtning"
 }
 ###
 GET http://localhost:4000/api/ HTTP/1.1

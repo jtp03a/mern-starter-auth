@@ -15,9 +15,8 @@ function Private() {
     try {
       const { data } = await axiosContext.authAxios.get("/private");
       setPrivateData(data);
-      console.log(data)
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setPrivateData('You are not authenticated')
     }
   };
 
@@ -29,7 +28,7 @@ function Private() {
           " " +
           authContext.authState.userInfo.lastname}
       </p>
-      <p>You are logged in</p>
+      <p>{privateData}</p>
       <div>
         <button
           className="btn btn-sm btn-danger mt-1"
