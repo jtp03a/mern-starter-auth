@@ -4,13 +4,13 @@ services:
   - docker:dind
 
 before_script:
-  - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
+  - echo ${DOCKER_PASSWORD} | docker login your_registry --username ${DOCKER_USER} --password-stdin
 
 build:
   stage: build
   script: 
-    - docker build -t registry.jakepeterson.dev/jpeterson/mern-starter-auth/mern-starter-auth:latest .
-    - docker push registry.jakepeterson.dev/jpeterson/mern-starter-auth/mern-starter-auth:latest
+    - docker build -t your_registry/mern-starter-auth:latest .
+    - docker push your_registry/mern-starter-auth:latest
 
 deploy:
   stage: deploy
