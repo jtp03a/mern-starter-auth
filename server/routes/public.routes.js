@@ -50,6 +50,7 @@ router.post('/auth/login', async (req, res) => {
       res.cookie('token', token, {
         httpOnly: true
       });
+      
       console.log('User logged in')
       res.json({
         message: 'Authentication successful',
