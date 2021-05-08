@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AuthContext } from "./../context/AuthContext";
 import { AxiosContext } from '../context/AxiosContext';
+import { Redirect } from 'react-router-dom';
 
 function Private() {
   const authContext = useContext(AuthContext);
@@ -8,6 +9,9 @@ function Private() {
   const [privateData, setPrivateData] = useState();
 
   useEffect(() => {
+    if (!authContext.isAuthenticated()) {
+      return <Redirect to={'/'} />;
+    }
     getPrivateData();
   }, []);
 
