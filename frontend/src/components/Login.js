@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { publicService } from './../util/public.service';
 import { AuthContext } from './../context/AuthContext';
 import { Redirect, Link } from 'react-router-dom';
+import { AxiosContext } from '../context/AxiosContext';
 
 function Login() {
   const authContext = useContext(AuthContext);
+  const axiosContext = useContext(AxiosContext);
   const [loginRedirect, setLoginRedirect] = useState(false);
   const [input, setInput] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
@@ -14,7 +15,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await publicService.post(`auth/login`, input);
+      const { data } = await axiosContext.authAxios.post(`auth/login`, input);
       authContext.setAuthState(data);
       setLoading(false);
       setLoginRedirect(true);
@@ -30,7 +31,7 @@ function Login() {
           console.log('You didnt enter anything');
         } else {
           input.newpass = passwordprompt;
-          const { data } = await publicService.post(
+          const { data } = await axiosContext.authAxios.post(
             `auth/changepassword`,
             input
           );

@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { publicService } from './../util/public.service';
 import { AuthContext } from './../context/AuthContext';
 import { Redirect, Link } from 'react-router-dom';
+import { AxiosContext } from '../context/AxiosContext';
 
 function Signup() {
   const authContext = useContext(AuthContext);
+  const axiosContext = useContext(AxiosContext);
   const [loginRedirect, setLoginRedirect] = useState(false);
   const [input, setInput] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
@@ -15,7 +16,7 @@ function Signup() {
     setLoading(true);
     if (input.password === input.confpassword) {
       try {
-        const { data } = await publicService.post(`auth/signup`, input);
+        const { data } = await axiosContext.authAxios.post(`auth/signup`, input);
         authContext.setAuthState(data);
         setLoading(false);
         setLoginRedirect(true);

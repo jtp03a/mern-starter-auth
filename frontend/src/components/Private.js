@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { AuthContext } from "./../context/AuthContext";
+import { AxiosContext } from '../context/AxiosContext';
 
 function Private() {
   const authContext = useContext(AuthContext);
